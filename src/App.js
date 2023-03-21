@@ -1,11 +1,16 @@
 import logo from "./logo.svg";
 import "./App.css";
 import { Toaster } from "react-hot-toast";
+import { RouterProvider } from "react-router-dom";
+import router from "./routing/routers/routers";
 
 function App() {
+  // For checking if the firebase configured properly
+  // console.log(process.env);
+  // console.log(document.documentElement);
   return (
     <div>
-      <h1 className="text-3xl font-bold underline">Hello world!</h1>
+      <RouterProvider router={router} />
       <Toaster />
     </div>
   );
