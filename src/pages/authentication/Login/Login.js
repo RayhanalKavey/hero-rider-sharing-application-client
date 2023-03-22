@@ -2,7 +2,7 @@ import React, { useEffect } from "react";
 import { useForm } from "react-hook-form";
 import { toast } from "react-hot-toast";
 import { useDispatch, useSelector } from "react-redux";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { googleLogin, loginUser } from "../../../features/auth/authSlice";
 
 const Login = () => {
@@ -11,6 +11,7 @@ const Login = () => {
     (state) => state?.auth
   );
   const dispatch = useDispatch();
+  const navigate = useNavigate();
   //------- React hook form user form and error
   const {
     register,
@@ -35,6 +36,7 @@ const Login = () => {
     if (!isLoading && email) {
       //Navigate user to the desired path (It basically works when user forcefully send to the login page. when user login/register the he will redirect to the page from where user if forced)
       // navigate(from, { replace: true });
+      navigate("/");
       reset();
     }
   }, [isLoading, email, reset]);
