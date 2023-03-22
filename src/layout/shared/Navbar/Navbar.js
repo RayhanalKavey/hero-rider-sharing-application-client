@@ -1,15 +1,25 @@
 import { signOut } from "firebase/auth";
 import React, { useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 
 import { logOut } from "../../../features/auth/authSlice";
 import auth from "../../../firebase/firebase.config";
+import { useGetUserQuery } from "../../../features/auth/authApi";
 
 const Navbar = () => {
   // Get information from the REDUX store
   const { email, role } = useSelector((state) => state.auth);
   const dispatch = useDispatch();
+
+  // get all users from the database
+  const { data, isLoading, isSuccess, isError, error } = useGetUserQuery();
+
+  // Find if the user isAdmin
+  const isAdmin = data?.find((u) => u?.email === email && u?.isAdmin === true);
+  // Find if the user isRider
+  const isRider = data?.find((u) => u?.email === email && u?.isRider === true);
+  const location = useLocation();
 
   // Open and close the hamburger menu
   const [isOpen, setIsOpen] = useState(false);
@@ -53,6 +63,16 @@ const Navbar = () => {
       <Link to="/about" className={`${commonLinkClass}`}>
         About
       </Link>
+      {isAdmin && email && (
+        <Link to="/admin-dashboard" className={`${commonLinkClass}`}>
+          Dashboard
+        </Link>
+      )}
+      {isRider && email && (
+        <Link to="/rider-dashboard" className={`${commonLinkClass}`}>
+          Dashboard
+        </Link>
+      )}
 
       {email ? (
         <>

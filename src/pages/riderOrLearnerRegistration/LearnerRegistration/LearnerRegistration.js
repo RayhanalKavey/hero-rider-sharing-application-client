@@ -99,41 +99,21 @@ const LearnerRegistration = () => {
           {" "}
           Employer Information
         </h1>
-        {/* First Name */}
-        <div className="grid grid-cols-2 gap-4">
-          <div>
-            <label htmlFor="firstName" className="block mb-1 font-medium">
-              First Name:
-            </label>
-            <input
-              type="text"
-              id="firstName"
-              {...register("firstName", { required: true })}
-              className="w-full px-4 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
-            />
-            {errors.firstName && (
-              <span className="text-red-500 text-sm">
-                This field is required
-              </span>
-            )}
-          </div>
-          {/* Last Name */}
-          <div>
-            <label htmlFor="lastName" className="block mb-1 font-medium">
-              Last Name:
-            </label>
-            <input
-              type="text"
-              id="lastName"
-              {...register("lastName", { required: true })}
-              className="w-full px-4 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
-            />
-            {errors.lastName && (
-              <span className="text-red-500 text-sm">
-                This field is required
-              </span>
-            )}
-          </div>
+        {/* Full Name */}
+
+        <div>
+          <label htmlFor="fullName" className="block mb-1 font-medium">
+            Full Name:
+          </label>
+          <input
+            type="text"
+            id="fullName"
+            {...register("fullName", { required: true })}
+            className="w-full px-4 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+          />
+          {errors.fullName && (
+            <span className="text-red-500 text-sm">This field is required</span>
+          )}
         </div>
         {/* Gender */}
         <div className="mt-4">
@@ -253,13 +233,7 @@ const LearnerRegistration = () => {
               required: "Password is required !",
               minLength: {
                 value: 6,
-                message:
-                  "Password must be 6 character, two uppercase and one special case letter.",
-              },
-              pattern: {
-                value: /(?=.*[A-Z].*[A-Z])(?=.*[!#@$%&? "])/,
-                message:
-                  "Ensure password has two uppercase and one special case letter.",
+                message: "Password must be 6 character.",
               },
             })}
             className="w-full px-4 py-2 mb-4 leading-tight border border-gray-500 rounded appearance-none focus:outline-none focus:bg-white focus:border-gray-500"
