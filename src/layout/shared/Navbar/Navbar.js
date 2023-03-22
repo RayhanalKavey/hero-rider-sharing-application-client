@@ -81,7 +81,7 @@ const Navbar = () => {
         >
           <div className="flex items-center  justify-between flex-1 ">
             <Link to="#" className="text-black dark:text-white font-bold">
-              Job Management
+              Hero Rider
             </Link>
             {/* Hamburger button */}
             <div className="flex items-center justify-center">
