@@ -65,7 +65,7 @@ const Navbar = () => {
           <Link to="/login" className={`${commonLinkClass}`}>
             Login
           </Link>
-          <Link to="/registration" className={`${commonLinkClass} `}>
+          <Link to="/selection" className={`${commonLinkClass} `}>
             Registration
           </Link>
         </>

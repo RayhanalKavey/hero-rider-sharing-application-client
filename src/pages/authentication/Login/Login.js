@@ -97,7 +97,7 @@ const Login = () => {
         {/* ---Link to the login page--- */}
         <p className="text-center">
           Not registered yet?{" "}
-          <Link className="text-blue-500" to={"/registration"}>
+          <Link className="text-blue-500" to={"/selection"}>
             Registration
           </Link>{" "}
         </p>
