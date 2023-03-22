@@ -19,6 +19,10 @@ const Navbar = () => {
   const isAdmin = data?.find((u) => u?.email === email && u?.isAdmin === true);
   // Find if the user isRider
   const isRider = data?.find((u) => u?.email === email && u?.isRider === true);
+  // Find if the user isLearner
+  const isLearner = data?.find(
+    (u) => u?.email === email && u?.isLearner === true
+  );
   const location = useLocation();
 
   // Open and close the hamburger menu
@@ -70,6 +74,11 @@ const Navbar = () => {
       )}
       {isRider && email && (
         <Link to="/rider-dashboard" className={`${commonLinkClass}`}>
+          Dashboard
+        </Link>
+      )}
+      {isLearner && email && (
+        <Link to="/learner-dashboard" className={`${commonLinkClass}`}>
           Dashboard
         </Link>
       )}

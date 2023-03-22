@@ -16,7 +16,7 @@ const RiderRoute = ({ children }) => {
   const isRider = data?.find((u) => u?.email === email && u?.isRider === true);
   // Find if the user Registered as employer otherwise send to the employer Registration page
   const isLearner = data?.find(
-    (u) => u?.email === email && u?.isLearder === true
+    (u) => u?.email === email && u?.isLearner === true
   );
   const location = useLocation();
   if (isLoading) {

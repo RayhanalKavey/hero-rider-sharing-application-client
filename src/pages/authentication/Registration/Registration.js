@@ -49,7 +49,7 @@ const Registration = () => {
   const handleOnSubmit = (data) => {
     const { email, password } = data;
     console.log(data);
-    dispatch(createUser({ email, password }));
+    // dispatch(createUser({ email, password }));
   };
 
   //-------- Google login
