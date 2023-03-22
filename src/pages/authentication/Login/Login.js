@@ -1,8 +1,16 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { useForm } from "react-hook-form";
+import { toast } from "react-hot-toast";
+import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
+import { googleLogin, loginUser } from "../../../features/auth/authSlice";
 
 const Login = () => {
+  //------ Take isError , Errors from useSelector of REDUX
+  const { isError, error, isLoading, email } = useSelector(
+    (state) => state?.auth
+  );
+  const dispatch = useDispatch();
   //------- React hook form user form and error
   const {
     register,
@@ -13,9 +21,29 @@ const Login = () => {
 
   //------- From data will come up here....
   const handleOnSubmit = (data) => {
-    // const { email, password } = data;
-    console.log(data);
+    const { email, password } = data;
+    dispatch(loginUser({ email, password }));
   };
+
+  //-------- Google login
+  const handleGoogleLogin = () => {
+    dispatch(googleLogin());
+  };
+
+  // If loading false and email arrived then redirect user
+  useEffect(() => {
+    if (!isLoading && email) {
+      //Navigate user to the desired path (It basically works when user forcefully send to the login page. when user login/register the he will redirect to the page from where user if forced)
+      // navigate(from, { replace: true });
+      reset();
+    }
+  }, [isLoading, email, reset]);
+  // Shoe error message with toast if failed to login
+  useEffect(() => {
+    if (isError) {
+      toast.error(error, { id: "login" });
+    }
+  }, [isError, error]);
 
   return (
     <div className="flex items-center justify-center mx-5 my-12">
@@ -79,6 +107,7 @@ const Login = () => {
         </div>
         {/* ---Google login button--- */}
         <button
+          onClick={handleGoogleLogin}
           className="btn btn-md w-full btn-outline bg-white flex items-center justify-center py-2 rounded"
           type="button"
         >
