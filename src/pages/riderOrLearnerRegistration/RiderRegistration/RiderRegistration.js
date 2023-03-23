@@ -52,7 +52,7 @@ const RiderRegistration = () => {
   //------- From data will come up here....
   const handleOnSubmit = (data) => {
     const { email, password } = data;
-    const riderInfo = { ...data, isRider: true };
+    const riderInfo = { ...data, isRider: true, userStatus: "rider" };
     dispatch(createUser({ email, password }));
     registerRider(riderInfo);
   };

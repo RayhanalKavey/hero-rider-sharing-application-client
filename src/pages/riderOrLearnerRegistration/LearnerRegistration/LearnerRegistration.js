@@ -52,7 +52,8 @@ const LearnerRegistration = () => {
   //------- From data will come up here....
   const handleOnSubmit = (data) => {
     const { email, password } = data;
-    const riderInfo = { ...data, isLearner: true };
+    const currentDate = new Date();
+    const riderInfo = { ...data, isLearner: true, userStatus: "learner" };
     dispatch(createUser({ email, password }));
     registerLearner(riderInfo);
   };

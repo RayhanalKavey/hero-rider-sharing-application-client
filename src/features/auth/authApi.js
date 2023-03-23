@@ -4,7 +4,13 @@ const authApi = apiSlice.injectEndpoints({
   endpoints: (builder) => ({
     getUser: builder.query({
       query: () => ({
-        url: "/user",
+        url: `/user`,
+      }),
+      providesTags: ["users"],
+    }),
+    getUserInfo: builder.query({
+      query: () => ({
+        url: `/user/info?userStatue=learner&limit=10&sort=age&page=3&fields=fullName`,
       }),
       providesTags: ["users"],
     }),
@@ -28,6 +34,7 @@ const authApi = apiSlice.injectEndpoints({
 });
 export const {
   useGetUserQuery,
+  useGetUserInfoQuery,
   useRegisterRiderMutation,
   useRegisterLearnerMutation,
 } = authApi;
